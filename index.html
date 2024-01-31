@@ -1,56 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Restaurant</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
-        .tile {
-            width: 100px;
-            height: 100px;
-            margin: 20px;
-            display: inline-block;
-            text-align: center;
-            line-height: 100px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            text-decoration: none;
-        }
-    </style>
+    <title>Restaurant Web App</title>
 </head>
 <body>
 
-    <div class="tile" onclick="goToPage('Menu')">Menu</div>
-    <div class="tile" onclick="goToRandomCategory()">Specials</div>
-    <div class="tile" onclick="goToPage('Map')">Map</div>
+    <div id="menuTile" class="tile" onclick="redirectToRandomCategory('Specials')">Menu</div>
+    <div id="specialsTile" class="tile" onclick="redirectToRandomCategory('Specials')">Specials</div>
+    <div id="mapTile" class="tile" onclick="redirectToRandomCategory('Specials')">Map</div>
 
     <script>
-        function goToPage(category) {
-            // You can implement custom behavior for other tiles here
-            alert("Redirecting to " + category + " page");
-            // Replace the alert with actual navigation logic
-        }
+        function redirectToRandomCategory(category) {
+            // Fetch the list of available categories from the server dynamically
+            const categories = ['Lunch', 'Dinner', 'Sushi', 'Drinks', 'Desserts'];
 
-        function goToRandomCategory() {
-            // Array of possible categories
-            var categories = ['Lunch', 'Dinner', 'Sushi', 'Drinks', 'Desserts', 'Appetizers'];
-            
-            // Get a random index
-            var randomIndex = Math.floor(Math.random() * categories.length);
-            
-            // Get the random category
-            var randomCategory = categories[randomIndex];
+            // Select a random category
+            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
 
             // Redirect to the random category page
-            window.location.href = 'category_page.html?category=' + encodeURIComponent(randomCategory);
+            window.location.href = `/category/${randomCategory}`;
         }
     </script>
 
